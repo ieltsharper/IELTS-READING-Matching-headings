@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading - Matching Headings</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f0f2f5; padding: 20px; font-size: 15px; }
+  .container { max-width: 700px; margin: 0 auto; background: #fff; border-radius: 10px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+  h1 { font-size: 1.4em; color: #222; margin-bottom: 6px; }
+  .subtitle { color: #555; font-size: 0.9em; margin-bottom: 20px; }
+  .student-info { background: #f0f4ff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 18px 20px; margin-bottom: 28px; }
+  .student-info h3 { font-size: 1em; color: #4a6cf7; margin-bottom: 12px; font-weight: 700; }
+  .info-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .info-field { flex: 1; min-width: 180px; }
+  .info-field label { display: block; font-size: 0.85em; color: #444; margin-bottom: 5px; font-weight: 600; }
+  .info-field input { width: 100%; padding: 8px 10px; border: 1px solid #bbb; border-radius: 5px; font-size: 0.93em; background: #fff; }
+  .info-field input:disabled { background: #f0f0f0; }
+  .instructions { background: #f8f9fa; border-left: 4px solid #4a6cf7; padding: 12px 15px; margin-bottom: 25px; font-size: 0.92em; color: #333; border-radius: 4px; }
+  .exercise { margin-bottom: 35px; }
+  .exercise-title { font-size: 1.1em; font-weight: bold; color: #4a6cf7; margin-bottom: 8px; border-bottom: 2px solid #e0e4ff; padding-bottom: 5px; }
+  .passage-note { font-size: 0.88em; color: #555; margin-bottom: 10px; font-style: italic; }
+  .headings-box { background: #f0f4ff; border: 1px solid #c7d2fe; border-radius: 6px; padding: 14px 18px; margin-bottom: 18px; }
+  .headings-box h4 { font-size: 0.9em; color: #444; margin-bottom: 8px; font-weight: 600; }
+  .headings-box ol { margin-left: 18px; font-size: 0.9em; color: #333; line-height: 1.7; }
+  .extra-note { font-size: 0.82em; color: #888; margin-bottom: 8px; font-style: italic; }
+  .question { margin-bottom: 12px; padding: 12px 14px; border: 1px solid #e0e0e0; border-radius: 6px; background: #fafafa; }
+  .question label { font-weight: 600; color: #333; display: block; margin-bottom: 7px; font-size: 0.93em; }
+  .question select { width: 100%; padding: 8px 10px; border: 1px solid #bbb; border-radius: 5px; font-size: 0.92em; background: #fff; color: #333; }
+  .question select:disabled { background: #f0f0f0; }
+  .feedback { margin-top: 8px; font-size: 0.88em; padding: 8px 10px; border-radius: 4px; display: none; }
+  .correct { background: #e6f9f0; border-left: 4px solid #22c55e; color: #166534; }
+  .incorrect { background: #fff1f1; border-left: 4px solid #ef4444; color: #991b1b; }
+  .explanation { font-size: 0.85em; margin-top: 5px; color: #555; font-style: italic; }
+  .btn-row { display: flex; gap: 12px; margin-top: 25px; flex-wrap: wrap; }
+  button { padding: 11px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.95em; font-weight: 600; }
+  button:hover { opacity: 0.88; }
+  #submitBtn { background: #4a6cf7; color: #fff; }
+  #resetBtn { background: #e0e0e0; color: #333; display: none; }
+  #scoreBox { display: none; margin-top: 20px; padding: 16px 20px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #4a6cf7; font-size: 1em; color: #333; }
+  .score-num { font-size: 1.5em; font-weight: bold; color: #4a6cf7; }
+  #emailStatus { margin-top: 14px; font-size: 0.9em; padding: 10px 14px; border-radius: 6px; display: none; font-weight: 500; }
+  .email-sending { background: #fff8e1; color: #92400e; border-left: 4px solid #f59e0b; }
+  .email-ok { background: #e6f9f0; color: #166534; border-left: 4px solid #22c55e; }
+  .email-fail { background: #fff1f1; color: #991b1b; border-left: 4px solid #ef4444; }
+  hr { border: none; border-top: 1px solid #eee; margin: 10px 0 20px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>IELTS Reading: Matching Headings</h1>
+  <p class="subtitle">Choose the correct heading for each paragraph from the list provided.</p>
+
+  <div class="student-info">
+    <h3>Student Information</h3>
+    <div class="info-row">
+      <div class="info-field">
+        <label for="studentName">Full Name *</label>
+        <input type="text" id="studentName" placeholder="e.g. Harper Ho" required>
+      </div>
+      <div class="info-field">
+        <label for="studentClass">Class</label>
+        <input type="text" id="studentClass" placeholder="e.g. IELTS 1">
+      </div>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <strong>Instructions:</strong> For each paragraph, select the correct heading from the dropdown. Each heading may only be used once. Click <strong>Submit Answers</strong> when finished.
+  </div>
+
+  <!-- EXERCISE 2 -->
+  <div class="exercise">
+    <div class="exercise-title">Exercise 2: The Rain Makers</div>
+    <p class="passage-note">Science and technology work with nature to bring rain when and where it is needed.</p>
+    <div class="headings-box">
+      <h4>List of Headings</h4>
+      <ol type="i">
+        <li>Making peaceful use of a military weapon</li>
+        <li>How modifying the weather has changed the world</li>
+        <li>What is prompting this research?</li>
+        <li>A period of drought comes to an end</li>
+        <li>An old solution to a new problem</li>
+        <li>Winners and losers</li>
+        <li>Tests provide encouraging results</li>
+        <li>A waste of money</li>
+        <li>Global attempts to change the weather</li>
+      </ol>
+    </div>
+    <p class="extra-note">Three headings are not needed.</p>
+    <div class="question">
+      <label>1. Paragraph A</label>
+      <select id="sel_2_1">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Making peaceful use of a military weapon</option>
+        <option value="ii">ii - How modifying the weather has changed the world</option>
+        <option value="iii">iii - What is prompting this research?</option>
+        <option value="iv">iv - A period of drought comes to an end</option>
+        <option value="v">v - An old solution to a new problem</option>
+        <option value="vi">vi - Winners and losers</option>
+        <option value="vii">vii - Tests provide encouraging results</option>
+        <option value="viii">viii - A waste of money</option>
+        <option value="ix">ix - Global attempts to change the weather</option>
+      </select>
+      <div class="feedback" id="fb_2_1"></div>
+    </div>
+    <div class="question">
+      <label>2. Paragraph B</label>
+      <select id="sel_2_2">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Making peaceful use of a military weapon</option>
+        <option value="ii">ii - How modifying the weather has changed the world</option>
+        <option value="iii">iii - What is prompting this research?</option>
+        <option value="iv">iv - A period of drought comes to an end</option>
+        <option value="v">v - An old solution to a new problem</option>
+        <option value="vi">vi - Winners and losers</option>
+        <option value="vii">vii - Tests provide encouraging results</option>
+        <option value="viii">viii - A waste of money</option>
+        <option value="ix">ix - Global attempts to change the weather</option>
+      </select>
+      <div class="feedback" id="fb_2_2"></div>
+    </div>
+    <div class="question">
+      <label>3. Paragraph C</label>
+      <select id="sel_2_3">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Making peaceful use of a military weapon</option>
+        <option value="ii">ii - How modifying the weather has changed the world</option>
+        <option value="iii">iii - What is prompting this research?</option>
+        <option value="iv">iv - A period of drought comes to an end</option>
+        <option value="v">v - An old solution to a new problem</option>
+        <option value="vi">vi - Winners and losers</option>
+        <option value="vii">vii - Tests provide encouraging results</option>
+        <option value="viii">viii - A waste of money</option>
+        <option value="ix">ix - Global attempts to change the weather</option>
+      </select>
+      <div class="feedback" id="fb_2_3"></div>
+    </div>
+    <div class="question">
+      <label>4. Paragraph D</label>
+      <select id="sel_2_4">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Making peaceful use of a military weapon</option>
+        <option value="ii">ii - How modifying the weather has changed the world</option>
+        <option value="iii">iii - What is prompting this research?</option>
+        <option value="iv">iv - A period of drought comes to an end</option>
+        <option value="v">v - An old solution to a new problem</option>
+        <option value="vi">vi - Winners and losers</option>
+        <option value="vii">vii - Tests provide encouraging results</option>
+        <option value="viii">viii - A waste of money</option>
+        <option value="ix">ix - Global attempts to change the weather</option>
+      </select>
+      <div class="feedback" id="fb_2_4"></div>
+    </div>
+    <div class="question">
+      <label>5. Paragraph E</label>
+      <select id="sel_2_5">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Making peaceful use of a military weapon</option>
+        <option value="ii">ii - How modifying the weather has changed the world</option>
+        <option value="iii">iii - What is prompting this research?</option>
+        <option value="iv">iv - A period of drought comes to an end</option>
+        <option value="v">v - An old solution to a new problem</option>
+        <option value="vi">vi - Winners and losers</option>
+        <option value="vii">vii - Tests provide encouraging results</option>
+        <option value="viii">viii - A waste of money</option>
+        <option value="ix">ix - Global attempts to change the weather</option>
+      </select>
+      <div class="feedback" id="fb_2_5"></div>
+    </div>
+    <div class="question">
+      <label>6. Paragraph F</label>
+      <select id="sel_2_6">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Making peaceful use of a military weapon</option>
+        <option value="ii">ii - How modifying the weather has changed the world</option>
+        <option value="iii">iii - What is prompting this research?</option>
+        <option value="iv">iv - A period of drought comes to an end</option>
+        <option value="v">v - An old solution to a new problem</option>
+        <option value="vi">vi - Winners and losers</option>
+        <option value="vii">vii - Tests provide encouraging results</option>
+        <option value="viii">viii - A waste of money</option>
+        <option value="ix">ix - Global attempts to change the weather</option>
+      </select>
+      <div class="feedback" id="fb_2_6"></div>
+    </div>
+  </div>
+  <hr>
+  <!-- EXERCISE 3 -->
+  <div class="exercise">
+    <div class="exercise-title">Exercise 3: Whale Communication</div>
+    <p class="passage-note">How and why humpback whales make their haunting songs.</p>
+    <div class="headings-box">
+      <h4>List of Headings</h4>
+      <ol type="i">
+        <li>Musical futures</li>
+        <li>Sad mystery to solve</li>
+        <li>Surprising discoveries</li>
+        <li>The inventiveness of song</li>
+        <li>Singing effects</li>
+        <li>Threats to survival</li>
+        <li>Singing for supper</li>
+        <li>Varieties of song</li>
+        <li>The significance of song</li>
+      </ol>
+    </div>
+    <div class="question">
+      <label>1. Paragraph A</label>
+      <select id="sel_3_1">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Musical futures</option>
+        <option value="ii">ii - Sad mystery to solve</option>
+        <option value="iii">iii - Surprising discoveries</option>
+        <option value="iv">iv - The inventiveness of song</option>
+        <option value="v">v - Singing effects</option>
+        <option value="vi">vi - Threats to survival</option>
+        <option value="vii">vii - Singing for supper</option>
+        <option value="viii">viii - Varieties of song</option>
+        <option value="ix">ix - The significance of song</option>
+      </select>
+      <div class="feedback" id="fb_3_1"></div>
+    </div>
+    <div class="question">
+      <label>2. Paragraph B</label>
+      <select id="sel_3_2">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Musical futures</option>
+        <option value="ii">ii - Sad mystery to solve</option>
+        <option value="iii">iii - Surprising discoveries</option>
+        <option value="iv">iv - The inventiveness of song</option>
+        <option value="v">v - Singing effects</option>
+        <option value="vi">vi - Threats to survival</option>
+        <option value="vii">vii - Singing for supper</option>
+        <option value="viii">viii - Varieties of song</option>
+        <option value="ix">ix - The significance of song</option>
+      </select>
+      <div class="feedback" id="fb_3_2"></div>
+    </div>
+    <div class="question">
+      <label>3. Paragraph C</label>
+      <select id="sel_3_3">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Musical futures</option>
+        <option value="ii">ii - Sad mystery to solve</option>
+        <option value="iii">iii - Surprising discoveries</option>
+        <option value="iv">iv - The inventiveness of song</option>
+        <option value="v">v - Singing effects</option>
+        <option value="vi">vi - Threats to survival</option>
+        <option value="vii">vii - Singing for supper</option>
+        <option value="viii">viii - Varieties of song</option>
+        <option value="ix">ix - The significance of song</option>
+      </select>
+      <div class="feedback" id="fb_3_3"></div>
+    </div>
+    <div class="question">
+      <label>4. Paragraph D</label>
+      <select id="sel_3_4">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Musical futures</option>
+        <option value="ii">ii - Sad mystery to solve</option>
+        <option value="iii">iii - Surprising discoveries</option>
+        <option value="iv">iv - The inventiveness of song</option>
+        <option value="v">v - Singing effects</option>
+        <option value="vi">vi - Threats to survival</option>
+        <option value="vii">vii - Singing for supper</option>
+        <option value="viii">viii - Varieties of song</option>
+        <option value="ix">ix - The significance of song</option>
+      </select>
+      <div class="feedback" id="fb_3_4"></div>
+    </div>
+    <div class="question">
+      <label>5. Paragraph E</label>
+      <select id="sel_3_5">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Musical futures</option>
+        <option value="ii">ii - Sad mystery to solve</option>
+        <option value="iii">iii - Surprising discoveries</option>
+        <option value="iv">iv - The inventiveness of song</option>
+        <option value="v">v - Singing effects</option>
+        <option value="vi">vi - Threats to survival</option>
+        <option value="vii">vii - Singing for supper</option>
+        <option value="viii">viii - Varieties of song</option>
+        <option value="ix">ix - The significance of song</option>
+      </select>
+      <div class="feedback" id="fb_3_5"></div>
+    </div>
+    <div class="question">
+      <label>6. Paragraph F</label>
+      <select id="sel_3_6">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Musical futures</option>
+        <option value="ii">ii - Sad mystery to solve</option>
+        <option value="iii">iii - Surprising discoveries</option>
+        <option value="iv">iv - The inventiveness of song</option>
+        <option value="v">v - Singing effects</option>
+        <option value="vi">vi - Threats to survival</option>
+        <option value="vii">vii - Singing for supper</option>
+        <option value="viii">viii - Varieties of song</option>
+        <option value="ix">ix - The significance of song</option>
+      </select>
+      <div class="feedback" id="fb_3_6"></div>
+    </div>
+  </div>
+  <hr>
+  <!-- EXERCISE 4 -->
+  <div class="exercise">
+    <div class="exercise-title">Exercise 4: Organic Food: Why?</div>
+    <p class="passage-note">The appeal and reality of organic food examined critically.</p>
+    <div class="headings-box">
+      <h4>List of Headings</h4>
+      <ol type="i">
+        <li>Research into whether organic food is better for us</li>
+        <li>Adding up the cost of organic food</li>
+        <li>The factors that can affect food quality</li>
+        <li>The rich and poor see things differently</li>
+        <li>A description of organic farming</li>
+        <li>Testing the taste of organic food</li>
+        <li>Fear of science has created the organic trend</li>
+        <li>The main reason for the popularity of organic food</li>
+        <li>The need to remove hidden dangers from food</li>
+      </ol>
+    </div>
+    <p class="extra-note">Note: Paragraph A is given as an example (Answer: viii). Answer for Paragraphs B to G.</p>
+    <div class="question">
+      <label>2. Paragraph B</label>
+      <select id="sel_4_1">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Research into whether organic food is better for us</option>
+        <option value="ii">ii - Adding up the cost of organic food</option>
+        <option value="iii">iii - The factors that can affect food quality</option>
+        <option value="iv">iv - The rich and poor see things differently</option>
+        <option value="v">v - A description of organic farming</option>
+        <option value="vi">vi - Testing the taste of organic food</option>
+        <option value="vii">vii - Fear of science has created the organic trend</option>
+        <option value="viii">viii - The main reason for the popularity of organic food</option>
+        <option value="ix">ix - The need to remove hidden dangers from food</option>
+      </select>
+      <div class="feedback" id="fb_4_1"></div>
+    </div>
+    <div class="question">
+      <label>3. Paragraph C</label>
+      <select id="sel_4_2">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Research into whether organic food is better for us</option>
+        <option value="ii">ii - Adding up the cost of organic food</option>
+        <option value="iii">iii - The factors that can affect food quality</option>
+        <option value="iv">iv - The rich and poor see things differently</option>
+        <option value="v">v - A description of organic farming</option>
+        <option value="vi">vi - Testing the taste of organic food</option>
+        <option value="vii">vii - Fear of science has created the organic trend</option>
+        <option value="viii">viii - The main reason for the popularity of organic food</option>
+        <option value="ix">ix - The need to remove hidden dangers from food</option>
+      </select>
+      <div class="feedback" id="fb_4_2"></div>
+    </div>
+    <div class="question">
+      <label>4. Paragraph D</label>
+      <select id="sel_4_3">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Research into whether organic food is better for us</option>
+        <option value="ii">ii - Adding up the cost of organic food</option>
+        <option value="iii">iii - The factors that can affect food quality</option>
+        <option value="iv">iv - The rich and poor see things differently</option>
+        <option value="v">v - A description of organic farming</option>
+        <option value="vi">vi - Testing the taste of organic food</option>
+        <option value="vii">vii - Fear of science has created the organic trend</option>
+        <option value="viii">viii - The main reason for the popularity of organic food</option>
+        <option value="ix">ix - The need to remove hidden dangers from food</option>
+      </select>
+      <div class="feedback" id="fb_4_3"></div>
+    </div>
+    <div class="question">
+      <label>5. Paragraph E</label>
+      <select id="sel_4_4">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Research into whether organic food is better for us</option>
+        <option value="ii">ii - Adding up the cost of organic food</option>
+        <option value="iii">iii - The factors that can affect food quality</option>
+        <option value="iv">iv - The rich and poor see things differently</option>
+        <option value="v">v - A description of organic farming</option>
+        <option value="vi">vi - Testing the taste of organic food</option>
+        <option value="vii">vii - Fear of science has created the organic trend</option>
+        <option value="viii">viii - The main reason for the popularity of organic food</option>
+        <option value="ix">ix - The need to remove hidden dangers from food</option>
+      </select>
+      <div class="feedback" id="fb_4_4"></div>
+    </div>
+    <div class="question">
+      <label>6. Paragraph F</label>
+      <select id="sel_4_5">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Research into whether organic food is better for us</option>
+        <option value="ii">ii - Adding up the cost of organic food</option>
+        <option value="iii">iii - The factors that can affect food quality</option>
+        <option value="iv">iv - The rich and poor see things differently</option>
+        <option value="v">v - A description of organic farming</option>
+        <option value="vi">vi - Testing the taste of organic food</option>
+        <option value="vii">vii - Fear of science has created the organic trend</option>
+        <option value="viii">viii - The main reason for the popularity of organic food</option>
+        <option value="ix">ix - The need to remove hidden dangers from food</option>
+      </select>
+      <div class="feedback" id="fb_4_5"></div>
+    </div>
+    <div class="question">
+      <label>7. Paragraph G</label>
+      <select id="sel_4_6">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Research into whether organic food is better for us</option>
+        <option value="ii">ii - Adding up the cost of organic food</option>
+        <option value="iii">iii - The factors that can affect food quality</option>
+        <option value="iv">iv - The rich and poor see things differently</option>
+        <option value="v">v - A description of organic farming</option>
+        <option value="vi">vi - Testing the taste of organic food</option>
+        <option value="vii">vii - Fear of science has created the organic trend</option>
+        <option value="viii">viii - The main reason for the popularity of organic food</option>
+        <option value="ix">ix - The need to remove hidden dangers from food</option>
+      </select>
+      <div class="feedback" id="fb_4_6"></div>
+    </div>
+  </div>
+  <hr>
+  <!-- EXERCISE 5 -->
+  <div class="exercise">
+    <div class="exercise-title">Exercise 5: Learning Color Words</div>
+    <p class="passage-note">Young children struggle with color concepts, and the reason may relate to how those words are used.</p>
+    <div class="headings-box">
+      <h4>List of Headings</h4>
+      <ol type="i">
+        <li>A possible explanation</li>
+        <li>Why names of objects are unhelpful</li>
+        <li>Checking out the theory</li>
+        <li>A curious state of affairs</li>
+        <li>The need to look at how words are formed</li>
+        <li>How age impacts on learning colours</li>
+        <li>Some unsurprising data</li>
+      </ol>
+    </div>
+    <div class="question">
+      <label>1. Paragraph A</label>
+      <select id="sel_5_1">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - A possible explanation</option>
+        <option value="ii">ii - Why names of objects are unhelpful</option>
+        <option value="iii">iii - Checking out the theory</option>
+        <option value="iv">iv - A curious state of affairs</option>
+        <option value="v">v - The need to look at how words are formed</option>
+        <option value="vi">vi - How age impacts on learning colours</option>
+        <option value="vii">vii - Some unsurprising data</option>
+      </select>
+      <div class="feedback" id="fb_5_1"></div>
+    </div>
+    <div class="question">
+      <label>2. Paragraph B</label>
+      <select id="sel_5_2">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - A possible explanation</option>
+        <option value="ii">ii - Why names of objects are unhelpful</option>
+        <option value="iii">iii - Checking out the theory</option>
+        <option value="iv">iv - A curious state of affairs</option>
+        <option value="v">v - The need to look at how words are formed</option>
+        <option value="vi">vi - How age impacts on learning colours</option>
+        <option value="vii">vii - Some unsurprising data</option>
+      </select>
+      <div class="feedback" id="fb_5_2"></div>
+    </div>
+    <div class="question">
+      <label>3. Paragraph C</label>
+      <select id="sel_5_3">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - A possible explanation</option>
+        <option value="ii">ii - Why names of objects are unhelpful</option>
+        <option value="iii">iii - Checking out the theory</option>
+        <option value="iv">iv - A curious state of affairs</option>
+        <option value="v">v - The need to look at how words are formed</option>
+        <option value="vi">vi - How age impacts on learning colours</option>
+        <option value="vii">vii - Some unsurprising data</option>
+      </select>
+      <div class="feedback" id="fb_5_3"></div>
+    </div>
+    <div class="question">
+      <label>4. Paragraph D</label>
+      <select id="sel_5_4">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - A possible explanation</option>
+        <option value="ii">ii - Why names of objects are unhelpful</option>
+        <option value="iii">iii - Checking out the theory</option>
+        <option value="iv">iv - A curious state of affairs</option>
+        <option value="v">v - The need to look at how words are formed</option>
+        <option value="vi">vi - How age impacts on learning colours</option>
+        <option value="vii">vii - Some unsurprising data</option>
+      </select>
+      <div class="feedback" id="fb_5_4"></div>
+    </div>
+  </div>
+  <hr>
+  <!-- EXERCISE 6 -->
+  <div class="exercise">
+    <div class="exercise-title">Exercise 6: Gold Dusters</div>
+    <p class="passage-note">They are the Earth's pollinators and they come in more than 200,000 shapes and sizes.</p>
+    <div class="headings-box">
+      <h4>List of Headings</h4>
+      <ol type="i">
+        <li>Looking for clues</li>
+        <li>Blaming the beekeepers</li>
+        <li>Solutions to a more troublesome issue</li>
+        <li>Discovering a new bee species</li>
+        <li>An impossible task for any human</li>
+        <li>The preferred pollinator</li>
+        <li>Plant features designed to suit the pollinator</li>
+        <li>Some obvious and less obvious pollen carriers</li>
+        <li>The undesirable alternative</li>
+        <li>An unexpected setback</li>
+      </ol>
+    </div>
+    <div class="question">
+      <label>1. Section A</label>
+      <select id="sel_6_1">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Looking for clues</option>
+        <option value="ii">ii - Blaming the beekeepers</option>
+        <option value="iii">iii - Solutions to a more troublesome issue</option>
+        <option value="iv">iv - Discovering a new bee species</option>
+        <option value="v">v - An impossible task for any human</option>
+        <option value="vi">vi - The preferred pollinator</option>
+        <option value="vii">vii - Plant features designed to suit the pollinator</option>
+        <option value="viii">viii - Some obvious and less obvious pollen carriers</option>
+        <option value="ix">ix - The undesirable alternative</option>
+        <option value="x">x - An unexpected setback</option>
+      </select>
+      <div class="feedback" id="fb_6_1"></div>
+    </div>
+    <div class="question">
+      <label>2. Section B</label>
+      <select id="sel_6_2">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Looking for clues</option>
+        <option value="ii">ii - Blaming the beekeepers</option>
+        <option value="iii">iii - Solutions to a more troublesome issue</option>
+        <option value="iv">iv - Discovering a new bee species</option>
+        <option value="v">v - An impossible task for any human</option>
+        <option value="vi">vi - The preferred pollinator</option>
+        <option value="vii">vii - Plant features designed to suit the pollinator</option>
+        <option value="viii">viii - Some obvious and less obvious pollen carriers</option>
+        <option value="ix">ix - The undesirable alternative</option>
+        <option value="x">x - An unexpected setback</option>
+      </select>
+      <div class="feedback" id="fb_6_2"></div>
+    </div>
+    <div class="question">
+      <label>3. Section C</label>
+      <select id="sel_6_3">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Looking for clues</option>
+        <option value="ii">ii - Blaming the beekeepers</option>
+        <option value="iii">iii - Solutions to a more troublesome issue</option>
+        <option value="iv">iv - Discovering a new bee species</option>
+        <option value="v">v - An impossible task for any human</option>
+        <option value="vi">vi - The preferred pollinator</option>
+        <option value="vii">vii - Plant features designed to suit the pollinator</option>
+        <option value="viii">viii - Some obvious and less obvious pollen carriers</option>
+        <option value="ix">ix - The undesirable alternative</option>
+        <option value="x">x - An unexpected setback</option>
+      </select>
+      <div class="feedback" id="fb_6_3"></div>
+    </div>
+    <div class="question">
+      <label>4. Section D</label>
+      <select id="sel_6_4">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Looking for clues</option>
+        <option value="ii">ii - Blaming the beekeepers</option>
+        <option value="iii">iii - Solutions to a more troublesome issue</option>
+        <option value="iv">iv - Discovering a new bee species</option>
+        <option value="v">v - An impossible task for any human</option>
+        <option value="vi">vi - The preferred pollinator</option>
+        <option value="vii">vii - Plant features designed to suit the pollinator</option>
+        <option value="viii">viii - Some obvious and less obvious pollen carriers</option>
+        <option value="ix">ix - The undesirable alternative</option>
+        <option value="x">x - An unexpected setback</option>
+      </select>
+      <div class="feedback" id="fb_6_4"></div>
+    </div>
+    <div class="question">
+      <label>5. Section E</label>
+      <select id="sel_6_5">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Looking for clues</option>
+        <option value="ii">ii - Blaming the beekeepers</option>
+        <option value="iii">iii - Solutions to a more troublesome issue</option>
+        <option value="iv">iv - Discovering a new bee species</option>
+        <option value="v">v - An impossible task for any human</option>
+        <option value="vi">vi - The preferred pollinator</option>
+        <option value="vii">vii - Plant features designed to suit the pollinator</option>
+        <option value="viii">viii - Some obvious and less obvious pollen carriers</option>
+        <option value="ix">ix - The undesirable alternative</option>
+        <option value="x">x - An unexpected setback</option>
+      </select>
+      <div class="feedback" id="fb_6_5"></div>
+    </div>
+    <div class="question">
+      <label>6. Section F</label>
+      <select id="sel_6_6">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Looking for clues</option>
+        <option value="ii">ii - Blaming the beekeepers</option>
+        <option value="iii">iii - Solutions to a more troublesome issue</option>
+        <option value="iv">iv - Discovering a new bee species</option>
+        <option value="v">v - An impossible task for any human</option>
+        <option value="vi">vi - The preferred pollinator</option>
+        <option value="vii">vii - Plant features designed to suit the pollinator</option>
+        <option value="viii">viii - Some obvious and less obvious pollen carriers</option>
+        <option value="ix">ix - The undesirable alternative</option>
+        <option value="x">x - An unexpected setback</option>
+      </select>
+      <div class="feedback" id="fb_6_6"></div>
+    </div>
+    <div class="question">
+      <label>7. Section G</label>
+      <select id="sel_6_7">
+        <option value="">-- Select heading --</option>
+        <option value="i">i - Looking for clues</option>
+        <option value="ii">ii - Blaming the beekeepers</option>
+        <option value="iii">iii - Solutions to a more troublesome issue</option>
+        <option value="iv">iv - Discovering a new bee species</option>
+        <option value="v">v - An impossible task for any human</option>
+        <option value="vi">vi - The preferred pollinator</option>
+        <option value="vii">vii - Plant features designed to suit the pollinator</option>
+        <option value="viii">viii - Some obvious and less obvious pollen carriers</option>
+        <option value="ix">ix - The undesirable alternative</option>
+        <option value="x">x - An unexpected setback</option>
+      </select>
+      <div class="feedback" id="fb_6_7"></div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button id="submitBtn" onclick="submitAll()">Submit Answers</button>
+    <button id="resetBtn" onclick="resetAll()">Try Again</button>
+  </div>
+  <div id="scoreBox"></div>
+  <div id="emailStatus"></div>
+</div>
+
+<script>
+const answers = {
+  "2_1": { correct:"iv", label:"Ex2 Para A", explanation:"Trích dẫn: Câu 2,3: \"... and there is a danger that unless there is substantial rainfall soon, his annual wheat crop will fail ... Within twenty minutes, the farms around the eastern Chinese city of Luohe are experiencing their first rain for many weeks.\" (Mối nguy là nếu không có đủ mưa, thì vụ mùa hàng năm của ông sẽ bị hỏng... Trong vòng 20 phút, các trang trại xung quanh thành phố Luohe của Trung Quốc trải nghiệm trận mưa đầu tiên trong nhiều tuần.) - Phù hợp iv. Thời kỳ hạn hán chấm dứt." },
+  "2_2": { correct:"ix", label:"Ex2 Para B", explanation:"Trích dẫn: Câu 5: \"There are currently 150 weather-modifying projects taking place in more than 40 countries\" (Hiện tại có 150 dự án thay đổi thời tiết diễn ra trên hơn 40 nước) rồi sau đó tác giả đưa ra các ví dụ về các dự án ở \"the USA\" và \"Russia\" - Phù hợp với ix. Sự nỗ lực toàn cầu để thay đổi thời tiết." },
+  "2_3": { correct:"vii", label:"Ex2 Para C", explanation:"Trích dẫn: Câu 2: \". ... researchers are using trials\" - các nhà nghiên cứu đang thử nghiệm. Sau đó, đưa ra kết quả tốt \"Weather-monitoring technology is so good nowadays, he says, that we can measure clouds much more effectively, even from the inside.\" - (Công nghệ điều khiển thời tiết hiện nay quá tốt, nên chúng ta đo được mây hiệu quả hơn rất nhiều, kể cả từ bên trong.) - Phù hợp với vii. Các thử nghiệm cung cấp kết quả tốt." },
+  "2_4": { correct:"i", label:"Ex2 Para D", explanation:"Trích dẫn: Câu 1: \"In China, weather-modification authorities use army rockets to fire silver-iodide particles into the clouds.\" (Tại Trung Quốc, đơn vị thay đổi thời tiết sử dụng rocket quân đội để bắn lên các phân tử bạc-iot vào mây.) Sau đó, tác giả đưa ra kết quả tốt của việc sử dụng vũ khí đó \"prevented thousands of farmers from losing their crops.\" - Phù hợp với i. Dùng vũ khí quân đội cho mục đích hòa bình." },
+  "2_5": { correct:"iii", label:"Ex2 Para E", explanation:"Trích dẫn: Câu 1: \"We want to understand what makes clouds rain,\" - Chúng tôi muốn hiểu điều gì làm mây mưa. Và Câu 2: \"But there is a more powerful economic reason.\" Nhưng có một lý do về kinh tế mạnh mẽ hơn. - Phù hợp với iii. Điều gì dẫn tới nghiên cứu này." },
+  "2_6": { correct:"vi", label:"Ex2 Para F", explanation:"Trích dẫn: Câu 1: \"Some people are concerned, however, that altering the weather can have negative consequences\". Tuy vậy, một vài người lo lắng, rằng việc thay đổi thời tiết có thể dẫn đến hậu quả xấu. Sau đó, Câu 3,4 giải thích kĩ hơn: \"Some people think that diverting water for irrigation benefits some people, but is a disadvantage to others...\" (Việc thay đổi thủy lợi có thể làm lợi cho một số người, nhưng gây bất lợi cho người khác.) - Chọn vi. Người thắng và kẻ thua." },
+  "3_1": { correct:"iii", label:"Ex3 Para A", explanation:"Trích dẫn: Câu 3, 4 đoạn A: \"... While he was doing this, Watlington noticed that humpback whales appeared to 'sing'\" (Trong khi Frank được giao nhiệm vụ nghe tiếng tàu ngầm của Nga, anh nhận ra cá voi có thể \"hát\") - Phù hợp với iii. Những khám phá bất ngờ." },
+  "3_2": { correct:"ix", label:"Ex3 Para B", explanation:"Trích dẫn: Câu 1 đoạn B: \"Scientists believe there are two main reasons for whales to make sounds: so that the whales know what objects (and perhaps food) are around them; and communication\". (Các nhà khoa học tin rằng có hai lý do chính để cá voi tạo ra tiếng: để chúng biết vật nào đang ở quanh chúng, và giao tiếp.) - Phù hợp với ix. Tầm quan trọng của bài hát." },
+  "3_3": { correct:"vii", label:"Ex3 Para C", explanation:"Trích dẫn: Câu 2, 3 đoạn C: \"Some whales look for food... Without being able to locate their food, the whales are going to go hungry. The whales send out series of clicks and listen out for the echo of the sound.\" - Phù hợp với vii. Hát cho bữa ăn." },
+  "3_4": { correct:"viii", label:"Ex3 Para D", explanation:"Câu 4 đoạn D: \"Other schools, particularly those found in other oceans, sing songs which are quite different.\" (Những đàn cá khác nhau hát những bài hát khá khác nhau.) - Phù hợp với viii. Sự đa dạng của bài hát." },
+  "3_5": { correct:"vi", label:"Ex3 Para E", explanation:"Trích dẫn: Câu 8, 9 đoạn E: \"In fact, the Worldwide Fund for Nature (WWF) says that large numbers of northern right whales are killed in collision with ships\" (Trên thực tế, WWF nói rằng số lượng lớn cá voi bị giết hại theo tàu.) - Phù hợp với vi. Mối nguy hiểm đe dọa sự tồn tại." },
+  "3_6": { correct:"ii", label:"Ex3 Para F", explanation:"Trích dẫn: Câu 2, 3: \"Could the reason for these tragedies have something to do with the noise pollution that these majestic creatures have to live with? ..., but it has attracted considerable research, and findings seem to point to man's industrial activities in the ocean\". (Những lý do cho các thảm họa này có liên quan đến ô nhiễm tiếng ồn? Không có câu trả lời thích đáng, nhưng nó đã thu hút nhiều nghiên cứu và sự tìm kiếm dường như chỉ đến những hành động công nghiệp của loài người trên đại dương.) - Phù hợp với ii. Bí ẩn buồn cần được giải quyết." },
+  "4_1": { correct:"v", label:"Ex4 Para B", explanation:"Trích dẫn: Câu 1: \"Unlike conventional farming, the organic approach means farming with natural, rather than man-made, fertilisers and pesticides.\" (Không giống như làm đồng thông thường, phương pháp organic có nghĩa là làm đồng với các phân bón, thuốc sâu tự nhiên, thay vì nhân tạo) Tác giả đang miêu tả đặc điểm của \"organic farming\" - Phù hợp với v. Mô tả organic farming." },
+  "4_2": { correct:"i", label:"Ex4 Para C", explanation:"Trích dẫn: Câu 2: \"Yet studies into organic farming worldwide continue to reject this claim.\" (các nghiên cứu trên toàn thế giới tiếp tục phản đối ý kiến này - ý kiến organic farming là an toàn hơn so với loại thường.) - Phù hợp với i. Nghiên cứu liệu thức ăn organic có tốt hơn cho chúng ta hay không." },
+  "4_3": { correct:"iii", label:"Ex4 Para D", explanation:"Trích dẫn: Câu 2: \"Food is a natural product, and the health value of different foods will vary for a number of reasons, including freshness, the way the food is cooked, the type of soil it is grown in, the amount of sunlight and rain crops have received, and so on\" (Thức ăn là một sản phẩm tự nhiên, và giá trị sức khỏe của các loại thức ăn khác nhau sẽ khác bởi nhiều yếu tố, có tươi mới, cách nấu, loại đất trồng, lượng ánh sáng và mùa mưa, vân vân) - Tác giả đưa ra một loạt các yếu tố ảnh hưởng đến chất lượng của món ăn. - Phù hợp với iii. Các yếu tố ảnh hưởng đến chất lượng thức ăn." },
+  "4_4": { correct:"ix", label:"Ex4 Para E", explanation:"Trích dẫn: Câu 6,7: \"the closer a plant is to its natural state, the more likely it is that it will poison you. Naturally, many plants do not want to be eaten, so we have spent 10,000 years developing agriculture and breeding out harmful traits from crops.\" (Cây cỏ càng gần tự nhiên, càng dễ gây độc cho bạn. Tự nhiên, nhiều loại cây không muốn bị ăn, do vậy chúng ta đã dành 10,000 năm phát triển nông nghiệp và loại bỏ những tính chất xấu khỏi mùa vụ.) - Phù hợp với ix. Nhu cầu loại bỏ những chất độc từ thức ăn." },
+  "4_5": { correct:"vii", label:"Ex4 Para F", explanation:"Trích dẫn: Câu 1: \"Yet educated Europeans are more scared of eating traces of a few, strictly regulated, man-made chemicals than they are of eating the ones that nature created directly.\" (Tuy vậy những người châu Âu sợ bị ăn phải chỉ một vài những thành phần hóa học nhân tạo được kiểm duyệt nghiêm ngặt còn sót lại hơn việc ăn những thứ do tự nhiên tạo ra trực tiếp.) - Phù hợp với vii. Nỗi sợ khoa học đã tạo ra xu hướng organic." },
+  "4_6": { correct:"iv", label:"Ex4 Para G", explanation:"Trích dẫn: Câu 1: \"..the organic farming movement is an expensive luxury for shoppers in well-manicured Europe.\" (organic farming là thứ xa xỉ đắt đỏ cho những người mua hàng ở châu Âu.) Và Câu 2: \"For developing parts of the world, it is irrelevant\" Với những phần đang phát triển của thế giới, nó là không phù hợp. - Phù hợp với iv. Người giàu và nghèo nhìn mọi thứ khác nhau." },
+  "5_1": { correct:"iv", label:"Ex5 Para A", explanation:"Trích dẫn: Câu 3: \"...For some reason, however, when it comes to learning color words, the same children perform very badly.\" (...Tuy vậy, khi nói tới việc học từ chỉ màu, những em nhỏ ấy lại thể hiện rất kém.) - Phù hợp với iv. Một tình trạng đáng tò mò." },
+  "5_2": { correct:"i", label:"Ex5 Para B", explanation:"Trích dẫn: Câu 1: \"In an effort to work out why this is, cognitive scientists at Stanford University in California hypothesized that children's incompetence at color-word learning may be directly linked to the way these words are used in English\" (Trong một nỗ lực giải thích tại sao, nhà khoa học nhận thức tại Stanford đã kiểm định giải thích rằng sự kém phát triển trong việc học từ về màu có thể liên kết trực tiếp tới các từ đó được dùng trong tiếng Anh.) - Phù hợp với i. Một sự giải thích chấp nhận được." },
+  "5_3": { correct:"iii", label:"Ex5 Para C", explanation:"Trích dẫn: Câu 1: \"To explore this idea further, the research team recruited 41 English children aged between 23 and 29 months and carried out a three-phase experiment\" (Để nghiên cứu ý tưởng này sâu hơn, đội nghiên cứu đã tuyển 41 em nhỏ nói tiếng Anh trong độ tuổi từ 23 đến 29 tháng và tiến hành một thí nghiệm ba giai đoạn.) - Phù hợp với iii. Kiểm tra lại giả thuyết." },
+  "5_4": { correct:"vii", label:"Ex5 Para D", explanation:"Trích dẫn: Câu cuối đoạn D: \"As predicted, when children are exposed to color adjectives .., they learn them rapidly ....\" (Giống như dự kiến, khi trẻ em được tiếp cận với tính từ chỉ màu.., chúng học rất nhanh.) - Phù hợp với vii. Một vài dữ liệu không bất ngờ." },
+  "6_1": { correct:"v", label:"Ex6 Para A", explanation:"Câu cuối đoạn A: \"They have used shaking tables, air blowers and blasts of sound. But natural means seem to work better.\" (Họ đã sử dụng bàn rung, máy thổi hơi và khí. Nhưng cách tự nhiên vẫn có vẻ tốt hơn.) - Chọn v. Một nhiệm vụ bất khả thi cho con người." },
+  "6_2": { correct:"viii", label:"Ex6 Para B", explanation:"Trích dẫn: Hai câu cuối: \"Even non-flying mammals do their part: ..., all with nimble hands that tear open flower stalks and furry coats to which pollen sticks. Most surprising, some lizards, such as geckos, lap up nectar and pollen and then transport the stuff on their faces and feet as they forage onward.\" (Một số loài mang trên pollen stick. Một số loài mang hẳn trên mặt và chân của chúng.) - Chọn viii. Một vài thứ mang phấn hoa dễ thấy và khó thấy hơn." },
+  "6_3": { correct:"vi", label:"Ex6 Para C", explanation:"Trích dẫn: Câu 7,8: \"honeybees have bigger colonies, cover longer distances, and tolerate management and movement better than most insects...\" (Honey-bees có khu vực hoạt động lớn, dài, và chịu đựng tốt hơn nhiều loại côn trùng khác. Sau đó giải thích vì sao lại tốt hơn) - Chọn vi. Vật thụ phấn được ưa chuộng." },
+  "6_4": { correct:"x", label:"Ex6 Para D", explanation:"Trích dẫn: Câu 1: \"Industrial-scale farming, however, may be wearing down the system\" (Việc làm nông theo công nghiệp, tuy vậy, có lẽ đang làm tổn hại đến hệ thống ấy.) - Câu x. Một bất lợi không ngờ trước." },
+  "6_5": { correct:"i", label:"Ex6 Para E", explanation:"Trích dẫn: Câu 1: \"... many people, ..., assumed that our slathering of chemicals on agricultural fields was to blame for the mystery\" (Nhiều người giả định rằng việc đổ bừa chất hóa học lên các cánh đồng đã gây nên kết quả sự bí ẩn ấy.) Trong các câu tiếp theo, đoạn E tập trung nói về việc tìm kiếm nguyên nhân qua các nghiên cứu và khảo sát. - Chọn i. Tìm kiếm dấu hiệu." },
+  "6_6": { correct:"iii", label:"Ex6 Para F", explanation:"Trích dẫn: Câu 1 và 2: \"However, habitat loss and alteration, he says, are even more of a menace to pollinators than pathogens. Claire Kremen encourages farmers to ..... to help solve habitat problems.\" (Tuy vậy, việc mất và thay đổi môi trường sống, mới là mối đe dọa tới loài thụ phấn hơn mầm bệnh. Claire ủng hộ nông dân ... để giúp giải quyết vấn đề môi trường sống.) - Chọn iii. Các giải pháp cho một vấn đề khó hơn." },
+  "6_7": { correct:"ix", label:"Ex6 Para G", explanation:"Trích dẫn: Câu cuối: \"It's vital that we give pollinators more of what they need and less of what they don't, and ease the burden on managed bees by letting native animals do their part, say scientists.\" (Điều quan trọng là chúng ta cho những loài thụ phấn nhiều thứ chúng cần hơn và ít đi những thứ chúng không cần, và giảm đi gánh nặng quản lý ong bằng cách để động vật làm phần của chúng.) - Chọn ix. Sự thay thế không mong muốn." }
+};
+
+function getOptionText(sel, val) {
+  for (let opt of sel.options) { if (opt.value === val) return opt.text; }
+  return val;
+}
+
+function submitAll() {
+  const nameVal = document.getElementById("studentName").value.trim();
+  if (!nameVal) {
+    alert("Please enter your name before submitting.");
+    document.getElementById("studentName").focus();
+    return;
+  }
+  let total = 0, correct = 0, lines = [];
+  for (const key in answers) {
+    const { correct: ans, label, explanation } = answers[key];
+    const sel = document.getElementById("sel_" + key);
+    const fb  = document.getElementById("fb_" + key);
+    if (!sel) continue;
+    total++;
+    sel.disabled = true;
+    fb.style.display = "block";
+    const userVal = sel.value;
+    const correctText = getOptionText(sel, ans);
+    if (userVal === ans) {
+      correct++;
+      fb.className = "feedback correct";
+      fb.innerHTML = "Correct! <div class=\'explanation\'>" + explanation + "</div>";
+      lines.push(label + ": CORRECT (" + ans + ")");
+    } else {
+      fb.className = "feedback incorrect";
+      fb.innerHTML = "Incorrect. Correct answer: <strong>" + correctText + "</strong><div class=\'explanation\'>" + explanation + "</div>";
+      lines.push(label + ": WRONG (gave: " + (userVal||"blank") + " | correct: " + ans + ")");
+    }
+  }
+  document.getElementById("submitBtn").style.display = "none";
+  document.getElementById("resetBtn").style.display = "inline-block";
+  document.getElementById("studentName").disabled = true;
+  document.getElementById("studentClass").disabled = true;
+  const pct = Math.round(correct/total*100);
+  const msg = correct===total ? "Perfect score! Outstanding work!" : correct>=total*0.7 ? "Good job! Keep practising." : "Keep going! Review the explanations to improve.";
+  const sb = document.getElementById("scoreBox");
+  sb.style.display = "block";
+  sb.innerHTML = "Your Score: <span class=\'score-num\'>" + correct + " / " + total + " (" + pct + "%)</span><br><span style=\'font-size:0.9em;color:#555;\'>" + msg + "</span>";
+
+  const classVal = document.getElementById("studentClass").value.trim() || "N/A";
+  const ts = new Date().toLocaleString("en-GB", {dateStyle:"short",timeStyle:"short"});
+  const statusEl = document.getElementById("emailStatus");
+  statusEl.style.display = "block";
+  statusEl.className = "email-sending";
+  statusEl.innerHTML = "⏳ Sending your score to the teacher...";
+
+  const formData = new FormData();
+  formData.append("access_key", "8657478a-0a29-474e-af86-8e7b33d4cf56");
+  formData.append("subject", "IELTS Quiz Result - " + nameVal + " - " + correct + "/" + total);
+  formData.append("from_name", "IELTS Quiz Auto-Submit");
+  formData.append("Student Name", nameVal);
+  formData.append("Class", classVal);
+  formData.append("Score", correct + " / " + total + " (" + pct + "%)");
+  formData.append("Submitted At", ts);
+  formData.append("Answer Details", lines.join("\n"));
+
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    body: formData
+  })
+  .then(async function(response) {
+    const data = await response.json();
+    if (response.status === 200) {
+      statusEl.className = "email-ok";
+      statusEl.innerHTML = "✅ Score sent to the teacher successfully!";
+    } else {
+      statusEl.className = "email-fail";
+      statusEl.innerHTML = "⚠️ Submission failed: " + (data.message || "Unknown error");
+    }
+  })
+  .catch(function(error) {
+    statusEl.className = "email-fail";
+    statusEl.innerHTML = "⚠️ Could not send score. Please check your internet connection.";
+  });
+}
+
+function resetAll() {
+  for (const key in answers) {
+    const sel = document.getElementById("sel_" + key);
+    const fb  = document.getElementById("fb_" + key);
+    if (sel) { sel.value = ""; sel.disabled = false; }
+    if (fb)  { fb.style.display = "none"; fb.innerHTML = ""; }
+  }
+  document.getElementById("studentName").disabled = false;
+  document.getElementById("studentName").value = "";
+  document.getElementById("studentClass").disabled = false;
+  document.getElementById("studentClass").value = "";
+  document.getElementById("submitBtn").style.display = "inline-block";
+  document.getElementById("resetBtn").style.display = "none";
+  document.getElementById("scoreBox").style.display = "none";
+  document.getElementById("emailStatus").style.display = "none";
+}
+</script>
+</body>
+</html>
